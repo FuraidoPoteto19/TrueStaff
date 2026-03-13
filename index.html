@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>True Staff Philippines</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #2e5bff;
+      --blue-dark: #134fb0;
+      --blue-light: #4189ff;
+      --bg: #f8faff;
+      --text: #1e1e1e;
+      --shadow: 0 4px 4px rgba(0,0,0,0.25);
+      --card-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
+      box-shadow: var(--shadow);
+      height: 93px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 97px;
+    }
+
+    .nav-logo img { height: 70px; width: auto; }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+      font-size: 20px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #000;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+
+    .btn-demo {
+      background: var(--blue);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 20px;
+      letter-spacing: 2px;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 28px;
+      cursor: pointer;
+      text-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      white-space: nowrap;
+      transition: opacity .2s;
+    }
+    .btn-demo:hover { opacity: .88; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      padding: 80px 123px 60px;
+      min-height: 620px;
+      display: flex;
+      align-items: flex-start;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      right: 80px;
+      top: 80px;
+      width: 674px;
+      height: 399px;
+      opacity: .8;
+      object-fit: cover;
+      border-radius: 16px;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 662px;
+    }
+
+    .hero-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 48px;
+      font-weight: 500;
+      line-height: 1.2;
+      color: #000;
+      margin-bottom: 30px;
+    }
+    .hero-title span { color: var(--blue); font-family: 'Montserrat', sans-serif; }
+
+    .hero-sub {
+      font-size: 24px;
+      font-weight: 400;
+      color: #272727;
+      line-height: 1.5;
+      max-width: 546px;
+      margin-bottom: 24px;
+    }
+    .hero-sub .accent1 { color: var(--blue-dark); }
+    .hero-sub .accent2 { color: var(--blue); }
+
+    .hero-tagline {
+      font-size: 31px;
+      font-weight: 500;
+      color: #353535;
+      max-width: 553px;
+      margin-bottom: 36px;
+      line-height: 1.3;
+    }
+    .hero-tagline span { color: var(--blue); }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      font-size: 22px;
+      letter-spacing: 2.8px;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 28px;
+      width: 318px;
+      height: 61px;
+      cursor: pointer;
+      text-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      transition: opacity .2s, transform .15s;
+    }
+    .btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+
+    /* ── SUB-HERO (Expand + Contact Form) ── */
+    .subhero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      padding: 60px 120px 80px;
+      align-items: start;
+    }
+
+    .subhero-points {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      padding-top: 24px;
+    }
+
+    .subhero-points h2 {
+      font-size: 42px;
+      font-weight: 400;
+      line-height: 1.25;
+      color: #000;
+    }
+
+    .subhero-points p {
+      font-size: 28px;
+      font-weight: 400;
+      color: #000;
+      line-height: 1.4;
+    }
+
+    .contact-card {
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 32px 36px 24px;
+    }
+
+    .contact-card h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #000;
+      margin-bottom: 24px;
+    }
+
+    .form-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .form-fields input,
+    .form-fields select {
+      background: #fff;
+      border: 1px solid #000;
+      border-radius: 12px;
+      height: 57px;
+      padding: 14px 20px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: rgba(0,0,0,.5);
+      width: 100%;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .form-fields input:focus { border-color: var(--blue); color: #000; }
+
+    .btn-send {
+      display: block;
+      margin: 0 auto 12px;
+      background: var(--blue);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      font-size: 18px;
+      letter-spacing: 2px;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 28px;
+      width: 318px;
+      height: 61px;
+      cursor: pointer;
+      text-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      transition: opacity .2s;
+    }
+    .btn-send:hover { opacity: .9; }
+
+    .recaptcha-notice {
+      font-size: 9px;
+      color: #000;
+      text-align: center;
+    }
+    .recaptcha-notice a { color: var(--blue); }
+
+    /* ── TRUSTED BY ── */
+    .trusted {
+      padding: 60px 120px 80px;
+    }
+
+    .section-title {
+      font-size: 40px;
+      font-weight: 600;
+      color: var(--blue-dark);
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .trusted-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .trusted-card {
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 60px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      text-align: center;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .trusted-card:hover { transform: translateY(-4px); box-shadow: var(--card-shadow); }
+
+    .trusted-card img { 
+      width: 300px;
+      height: 220px;
+      object-fit: contain;
+    }
+
+    .trusted-card p {
+      font-size: 22px;
+      color: #000;
+      line-height: 1.4;
+    }
+
+    /* ── WE CAN HELP ── */
+    .help-section {
+      padding: 60px 120px 80px;
+      text-align: center;
+    }
+
+    .help-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 40px;
+    }
+
+    .help-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      padding: 32px 24px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      text-align: center;
+    }
+
+    .help-card img { width: 83px; height: 83px; object-fit: contain; }
+
+    .help-card h4 {
+      font-size: 22px;
+      font-weight: 600;
+      color: #000;
+    }
+
+    .help-card p {
+      font-size: 18px;
+      color: #000;
+      line-height: 1.5;
+    }
+
+    /* ── SERVICES ── */
+    .services-section {
+      background: var(--blue-light);
+      padding: 60px 80px 80px;
+      text-align: center;
+    }
+
+    .services-section .section-title { color: #000; margin-bottom: 8px; }
+
+    .services-section .section-sub {
+      font-size: 22px;
+      color: #000;
+      margin-bottom: 48px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .service-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      text-align: center;
+    }
+
+    /* ── SERVICE ICON CIRCLE ── */
+    .service-icon {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: rgba(180, 215, 255, 0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .service-icon img { width: 80px; height: 80px; object-fit: contain; flex-shrink: 0; }
+
+    .service-card h4 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #000;
+    }
+
+    .service-card p {
+      font-size: 13px;
+      font-weight: 400;
+      color: #fff;
+      line-height: 1.5;
+    }
+
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      color: #000;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 22px;
+      letter-spacing: 2.4px;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 28px;
+      width: 259px;
+      height: 54px;
+      cursor: pointer;
+      text-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      transition: opacity .2s;
+    }
+    .btn-white:hover { opacity: .88; }
+
+    /* ── BUILDING TEAMS ── */
+    .teams-section {
+      padding: 60px 120px 80px;
+      text-align: center;
+    }
+
+    .teams-section .section-title { color: var(--blue); }
+
+    .teams-section .section-sub {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+      max-width: 805px;
+      margin: 0 auto 48px;
+      line-height: 1.5;
+    }
+
+    .teams-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .team-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      text-align: center;
+    }
+
+    .team-card img { width: 100px; height: 100px; object-fit: contain; }
+
+    .team-card h4 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #000;
+    }
+
+    .team-card p {
+      font-size: 16px;
+      color: #000;
+      line-height: 1.5;
+    }
+
+    /* ── READY TO GROW ── */
+    .cta-bar {
+      background: var(--blue-light);
+      padding: 32px 40px;
+      text-align: center;
+    }
+    .cta-bar h2 {
+      font-size: 40px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #000;
+      color: #fff;
+      padding: 48px 80px 32px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1.2fr 1.8fr;
+      gap: 48px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-col ul li,
+    .footer-col ul li a {
+      font-size: 16px;
+      font-weight: 400;
+      color: #fff;
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+    .footer-col ul li a:hover { opacity: .75; }
+
+    .footer-contact p {
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+    .footer-contact a { color: #fff; text-decoration: none; }
+
+    .footer-contact .label {
+      font-weight: 700;
+      font-size: 16px;
+      margin-top: 12px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .social-links a img { width: 46px; height: 46px; object-fit: cover; border-radius: 6px; }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.2);
+      padding-top: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-content > * {
+      animation: fadeUp .7s ease both;
+    }
+    .hero-content > *:nth-child(1) { animation-delay: .05s; }
+    .hero-content > *:nth-child(2) { animation-delay: .15s; }
+    .hero-content > *:nth-child(3) { animation-delay: .25s; }
+    .hero-content > *:nth-child(4) { animation-delay: .35s; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-logo">
+      <img src="https://www.figma.com/api/mcp/asset/46fe6b28-b991-42e9-94de-87fc33465a5f" alt="True Staff Logo" />
+    </div>
+    <ul class="nav-links">
+      <li><a href="#">HOME</a></li>
+      <li><a href="#">SERVICES</a></li>
+      <li><a href="#">ABOUT US</a></li>
+      <li><a href="#">PARTNERS</a></li>
+      <li><a href="#">JOBS</a></li>
+      <li><a href="#">CSR</a></li>
+      <li><a href="#">CONTACT</a></li>
+    </ul>
+    <button class="btn-demo">REQUEST A DEMO</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img class="hero-bg" src="https://www.figma.com/api/mcp/asset/fff9b004-cabd-46d9-9c00-4d7b5eacda82" alt="" />
+    <div class="hero-content">
+      <h1 class="hero-title">
+        Let's Activate, Manage, and Run <span>Your Business</span> in the Philippines
+      </h1>
+      <p class="hero-sub">
+        True Staff provides <span class="accent1">Business Activation</span>,
+        <span class="accent2">Recruitment</span>,
+        <span class="accent2">HR &amp; payroll</span>, and
+        <span class="accent2">Employer of Record</span>
+        services to help companies scale efficiently.
+      </p>
+      <p class="hero-tagline">
+        Your trusted <span>Employer of Record</span> partner for seamless expansion.
+      </p>
+      <button class="btn-primary">TALK TO US NOW</button>
+    </div>
+  </section>
+
+  <!-- SUB-HERO -->
+  <section class="subhero">
+    <div class="subhero-points">
+      <h2>Expand in the Philippines - no entity set-up is required</h2>
+      <p>Hire and manage a remote team without establishing a local entity</p>
+      <p>Expert management of compliance, payroll, and HR functions</p>
+      <p>Quick and easy onboarding process with government compliance taken care of</p>
+    </div>
+    <div class="contact-card">
+      <h3>Get in Touch With Us</h3>
+      <div class="form-fields">
+        <input type="text" placeholder="Name" />
+        <input type="email" placeholder="Email" />
+        <input type="tel" placeholder="Phone" />
+        <input type="text" placeholder="How can we help?" />
+        <input type="text" placeholder="Other Comments?" />
+      </div>
+      <button class="btn-send">SEND MESSAGE</button>
+      <p class="recaptcha-notice">
+        This site is protected by reCAPTCHA and the Google
+        <a href="https://policies.google.com/privacy"> Privacy Policy</a> and
+        <a href="https://policies.google.com/terms"> Terms of Service</a> apply.
+      </p>
+    </div>
+  </section>
+
+  <!-- TRUSTED BY -->
+  <section class="trusted">
+    <h2 class="section-title">Trusted by Companies we Work with</h2>
+    <div class="trusted-cards">
+      <a class="trusted-card" href="https://www.edgewoodhealthnetwork.com" target="_blank">
+        <img src="https://www.figma.com/api/mcp/asset/3ee1cc1a-793e-4d9c-8be4-b62cd1c04ef4" alt="EHN Canada" />
+        <p>Leading mental health and addiction treatment provider in Canada</p>
+      </a>
+      <a class="trusted-card" href="https://wepositive.energy/en/" target="_blank">
+        <img src="https://www.figma.com/api/mcp/asset/9beb6a66-668f-4951-84d1-95f4a16cabfd" alt="WePositive Energy" />
+        <p>Innovative provider of renewable energy solutions</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- WE CAN HELP -->
+  <section class="help-section">
+    <h2 class="section-title">We Can Help You</h2>
+    <div class="help-cards">
+      <div class="help-card">
+        <img src="https://www.figma.com/api/mcp/asset/31132a08-46f3-4da1-8949-65d4fa685b82" alt="Talent Acquisition" />
+        <h4>TALENT ACQUISITION</h4>
+        <p>Find top talents across the globe with our expert recruiters. Fast turnaround and competitive rates.</p>
+      </div>
+      <div class="help-card">
+        <img src="https://www.figma.com/api/mcp/asset/cd3da1bf-b4ce-4fd2-a935-768c846bf86a" alt="Employer of Record" />
+        <h4>EMPLOYER OF RECORD</h4>
+        <p>We manage your team's legal compliance and administration in the Philippines. Full HR support without local entity setup.</p>
+      </div>
+      <div class="help-card">
+        <img src="https://www.figma.com/api/mcp/asset/d2165f80-fb58-43b4-90b8-c38d12c9bd33" alt="HR & Payroll" />
+        <h4>HR &amp; Payroll</h4>
+        <p>Outsource your HR and payroll needs to our experienced team. We handle compliance, payroll, and government reports.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR SERVICES -->
+  <section class="services-section">
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-sub">Supporting your business growth with reliable recruitment, HR, and operational solutions.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">
+        <img src="https://www.figma.com/api/mcp/asset/b1a351a6-cfa6-4a50-8edd-ce78a17f93b5" alt="Business Activation" />
+        </div>
+        <h4>Business Activation</h4>
+        <p>We help businesses establish and operate in the Philippines by managing regulatory requirements, operational setup, and local compliance.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+        <img src="https://www.figma.com/api/mcp/asset/8b9b148d-7f80-4a17-a34f-08319d3bbadd" alt="HR & Payroll" />
+        </div>
+        <h4>HR &amp; Payroll</h4>
+        <p>We manage payroll processing, employee benefits, and government compliance to ensure your workforce is supported and paid accurately.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+        <img src="https://www.figma.com/api/mcp/asset/70ccc5b9-8138-4148-9776-515e78c5fc36" alt="Employer of Record" />
+        </div>
+        <h4>Employer of Record</h4>
+        <p>Hire employees in the Philippines without establishing a legal entity. We handle employment contracts, compliance, and employee management.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+        <img src="https://www.figma.com/api/mcp/asset/c258b3e0-de0f-4d82-b627-8fd737a3cc09" alt="Recruitment" />
+        </div>
+        <h4>Recruitment</h4>
+        <p>Our recruitment specialists connect you with highly qualified professionals through a structured sourcing, screening, and hiring process.</p>
+      </div>
+    </div>
+    <button class="btn-white">LEARN MORE</button>
+  </section>
+
+  <!-- BUILDING STRONGER TEAMS -->
+  <section class="teams-section">
+    <h2 class="section-title">Building Stronger Teams for the Future</h2>
+    <p class="section-sub">At True Staff, we help businesses grow by connecting them with skilled professionals and reliable workforce solutions.</p>
+    <div class="teams-grid">
+      <div class="team-card">
+        <img src="https://www.figma.com/api/mcp/asset/81e49607-f84e-4d09-b569-7cded17def56" alt="Vision" />
+        <h4>Our Vision for Workforce Growth</h4>
+        <p>At True Staff, we believe the right talent drives business success. Our goal is to connect organizations with skilled professionals who can help them grow and thrive.</p>
+      </div>
+      <div class="team-card">
+        <img src="https://www.figma.com/api/mcp/asset/3f9933ec-99f0-443f-ae5e-5d753d8e3b89" alt="Precision Recruitment" />
+        <h4>Precision Recruitment</h4>
+        <p>Our recruitment specialists carefully screen and match candidates with the right opportunities, ensuring businesses hire the most qualified professionals.</p>
+      </div>
+      <div class="team-card">
+        <img src="https://www.figma.com/api/mcp/asset/ee667090-5b8d-4d2a-b101-0f3f4927ae04" alt="Smart Workforce" />
+        <h4>Smart Workforce Solutions</h4>
+        <p>We offer tailored workforce solutions including recruitment, HR support, payroll management, and employer-of-record services.</p>
+      </div>
+      <div class="team-card">
+        <img src="https://www.figma.com/api/mcp/asset/8a5e9f70-47d1-4730-a33d-5e7d8475ec87" alt="Talent Development" />
+        <h4>Talent Development</h4>
+        <p>True Staff supports the growth of professionals by connecting them with opportunities that build skills, careers, and long-term success.</p>
+      </div>
+      <div class="team-card">
+        <img src="https://www.figma.com/api/mcp/asset/21347ef9-b67f-4f0b-8c22-c1b341886fa3" alt="Simple Hiring" />
+        <h4>Simple Hiring Process</h4>
+        <p>Our streamlined recruitment process helps businesses hire faster while reducing administrative complexity and hiring risks.</p>
+      </div>
+      <div class="team-card">
+        <img src="https://www.figma.com/api/mcp/asset/55356697-2047-4b30-a594-85b340115c34" alt="Data-Driven Hiring" />
+        <h4>Data-Driven Hiring</h4>
+        <p>We leverage modern recruitment tools and data insights to ensure the best talent matches for every client.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- READY TO GROW CTA -->
+  <div class="cta-bar">
+    <h2>Ready to Grow Your Team?</h2>
+  </div>
+
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>SERVICES</h4>
+        <ul>
+          <li>BUSINESS ACTIVATION</li>
+          <li>HR &amp; PAYROLL</li>
+          <li>EMPLOYER OF RECORD</li>
+          <li>RECRUITMENT</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>COMPANY</h4>
+        <ul>
+          <li>ABOUT US</li>
+          <li>PARTNERS</li>
+          <li>JOBS</li>
+          <li>CSR</li>
+          <li>CONTACT</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>LEGAL</h4>
+        <ul>
+          <li><a href="https://policies.google.com/privacy" target="_blank">GOOGLE PRIVACY POLICY</a></li>
+          <li><a href="https://policies.google.com/terms" target="_blank">TERMS OF SERVICES</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-contact">
+        <p>Unit 106, Bldg. 13, Phase 1, Urban Deca Homes Tisa, Tisa, Cebu City, 6000</p>
+        <p class="label">EMAIL</p>
+        <p>hello@truestaffphmgt.com</p>
+        <p class="label">PHONE</p>
+        <p>0917 106 2150</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/profile.php?id=100091492266684" target="_blank">
+            <img src="https://www.figma.com/api/mcp/asset/72221805-aa0f-4ba4-a9fd-78a5b360030b" alt="Facebook" />
+          </a>
+          <a href="https://www.linkedin.com/company/true-staff-philippines-management-inc/" target="_blank">
+            <img src="https://www.figma.com/api/mcp/asset/a117d078-dc79-4d5d-b0f4-8a01a4b4e025" alt="LinkedIn" />
+          </a>
+        </div>
+      </div>
+    </div>
