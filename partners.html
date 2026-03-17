@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Partners – True Staff Philippines</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #2e5bff;
+      --blue-dark: #134fb0;
+      --blue-light: #4189ff;
+      --bg: #f8faff;
+      --text: #1e1e1e;
+      --shadow: 0 4px 4px rgba(0,0,0,0.25);
+      --card-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
+      box-shadow: var(--shadow);
+      height: 93px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 97px;
+    }
+    .nav-logo img { height: 70px; width: auto; }
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+      font-size: 20px;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #000;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-links a.active { color: var(--blue); font-weight: 600; }
+    .btn-demo {
+      background: var(--blue);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 20px;
+      letter-spacing: 2px;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 28px;
+      cursor: pointer;
+      text-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      white-space: nowrap;
+      transition: opacity .2s;
+    }
+    .btn-demo:hover { opacity: .88; }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 48px 120px 0;
+    }
+    .page-header h1 {
+      font-size: 28px;
+      font-weight: 400;
+      color: #555;
+    }
+
+    /* ── SECTION TITLES ── */
+    .section-title {
+      font-size: 40px;
+      font-weight: 600;
+      color: var(--blue-dark);
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 20px;
+      font-weight: 400;
+      color: #333;
+      text-align: center;
+      margin-bottom: 48px;
+      line-height: 1.5;
+    }
+
+    /* ── OUR CUSTOMERS & PARTNERS ── */
+    .partners-section {
+      padding: 60px 120px 80px;
+    }
+
+    .partners-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .partner-card {
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 60px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      text-align: center;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .partner-card:hover { transform: translateY(-4px); box-shadow: var(--card-shadow); }
+
+    .partner-card img {
+      width: 300px;
+      height: 220px;
+      object-fit: contain;
+    }
+
+    .partner-card h3 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #000;
+    }
+
+    .partner-card p {
+      font-size: 20px;
+      color: #000;
+      line-height: 1.5;
+    }
+
+    /* ── FEEDBACK SECTION ── */
+    .feedback-section {
+      padding: 60px 120px 80px;
+    }
+
+    .feedback-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 8px;
+    }
+
+    .feedback-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 36px 28px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+    }
+
+    .quote-icon {
+      font-size: 48px;
+      color: var(--blue-light);
+      font-family: Georgia, serif;
+      line-height: 1;
+      margin-bottom: -8px;
+    }
+
+    .feedback-card p {
+      font-size: 16px;
+      color: #333;
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    /* ── READY TO GROW CTA ── */
+    .cta-bar {
+      background: var(--blue-light);
+      padding: 32px 40px;
+      text-align: center;
+    }
+    .cta-bar h2 {
+      font-size: 40px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #000;
+      color: #fff;
+      padding: 48px 80px 32px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1.2fr 1.8fr;
+      gap: 48px;
+      margin-bottom: 40px;
+    }
+    .footer-col h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+    }
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-col ul li,
+    .footer-col ul li a {
+      font-size: 16px;
+      font-weight: 400;
+      color: #fff;
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+    .footer-col ul li a:hover { opacity: .75; }
+    .footer-contact p {
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+    .footer-contact a { color: #fff; text-decoration: none; }
+    .footer-contact .label {
+      font-weight: 700;
+      font-size: 16px;
+      margin-top: 12px;
+    }
+    .social-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .social-links a img { width: 46px; height: 46px; object-fit: cover; border-radius: 6px; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.2);
+      padding-top: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .partners-cards,
+    .feedback-cards {
+      animation: fadeUp .6s ease both;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-logo">
+      <img src="https://www.figma.com/api/mcp/asset/46fe6b28-b991-42e9-94de-87fc33465a5f" alt="True Staff Logo" />
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="services.html">SERVICES</a></li>
+      <li><a href="aboutus.html">ABOUT US</a></li>
+      <li><a href="#">PARTNERS</a></li>
+      <li><a href="#">JOBS</a></li>
+      <li><a href="#">CSR</a></li>
+      <li><a href="#">CONTACT</a></li>
+    </ul>
+    <button class="btn-demo">REQUEST A DEMO</button>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <h1>Partners</h1>
+  </div>
+
+  <!-- OUR CUSTOMERS & PARTNERS -->
+  <section class="partners-section">
+    <h2 class="section-title">Our Customers &amp; Partners</h2>
+    <p class="section-sub">We proudly serve global companies and work alongside<br />trusted partners across various industries</p>
+
+    <div class="partners-cards">
+      <a class="partner-card" href="https://www.edgewoodhealthnetwork.com" target="_blank">
+        <img src="https://www.figma.com/api/mcp/asset/3ee1cc1a-793e-4d9c-8be4-b62cd1c04ef4" alt="EHN Canada" />
+        <p>Leading mental health and addiction treatment provider in Canada</p>
+      </a>
+      <a class="partner-card" href="https://wepositive.energy/en/" target="_blank">
+        <img src="https://www.figma.com/api/mcp/asset/9beb6a66-668f-4951-84d1-95f4a16cabfd" alt="WePositive Energy" />
+        <p>Innovative provider of renewable energy solutions</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- FEEDBACK SECTION -->
+  <section class="feedback-section">
+    <h2 class="section-title">Our Customer and Partners Feedback</h2>
+
+    <div class="feedback-cards">
+
+      <div class="feedback-card">
+        <div class="quote-icon">"</div>
+        <p>True Staff consistently met our expectations and has shown up on time and ready to work.</p>
+      </div>
+
+      <div class="feedback-card">
+        <div class="quote-icon">"</div>
+        <p>The True Staff team is professional, reliable, and demonstrates exceptional flexibility and work commitment.</p>
+      </div>
+
+      <div class="feedback-card">
+        <div class="quote-icon">"</div>
+        <p>The delivery has been outstanding. True Staff completed assignments as needed and on time as expected.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- READY TO GROW CTA -->
+  <div class="cta-bar">
+    <h2>Ready to Grow Your Team?</h2>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>SERVICES</h4>
+        <ul>
+          <li>BUSINESS ACTIVATION</li>
+          <li>HR &amp; PAYROLL</li>
+          <li>EMPLOYER OF RECORD</li>
+          <li>RECRUITMENT</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>COMPANY</h4>
+        <ul>
+          <li>ABOUT US</li>
+          <li>PARTNERS</li>
+          <li>JOBS</li>
+          <li>CSR</li>
+          <li>CONTACT</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>LEGAL</h4>
+        <ul>
+          <li><a href="https://policies.google.com/privacy" target="_blank">GOOGLE PRIVACY POLICY</a></li>
+          <li><a href="https://policies.google.com/terms" target="_blank">TERMS OF SERVICES</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-contact">
+        <p>Unit 106, Bldg. 13, Phase 1, Urban Deca Homes Tisa, Tisa, Cebu City, 6000</p>
+        <p class="label">EMAIL</p>
+        <p>hello@truestaffphmgt.com</p>
+        <p class="label">PHONE</p>
+        <p>0917 106 2150</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/profile.php?id=100091492266684" target="_blank">
+            <img src="https://www.figma.com/api/mcp/asset/72221805-aa0f-4ba4-a9fd-78a5b360030b" alt="Facebook" />
+          </a>
+          <a href="https://www.linkedin.com/company/true-staff-philippines-management-inc/" target="_blank">
+            <img src="https://www.figma.com/api/mcp/asset/a117d078-dc79-4d5d-b0f4-8a01a4b4e025" alt="LinkedIn" />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      Copyright © 2025 True Staff - All Rights Reserved.
+    </div>
+  </footer>
+
+</body>
+</html>
