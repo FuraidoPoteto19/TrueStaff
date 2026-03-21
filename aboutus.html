@@ -10,7 +10,7 @@
 
     :root {
       --blue: #2e5bff;
-      --blue-dark: #134fb0;
+      --blue-dark: #004AAD;
       --blue-light: #4189ff;
       --bg: #f8faff;
       --text: #1e1e1e;
@@ -52,13 +52,13 @@
       color: #000;
       transition: color .2s;
     }
-    .nav-links a:hover { color: var(--blue); }
-    .nav-links a.active { color: var(--blue); font-weight: 600; }
+    .nav-links a:hover { color: var(--blue-dark); }
+    .nav-links a.active { color: var(--blue-dark); font-weight: 600; }
     .btn-demo {
-      background: var(--blue);
+      background: var(--blue-dark);
       color: #fff;
       font-family: 'Montserrat', sans-serif;
-      font-weight: 600;
+      font-weight: 500;
       font-size: 20px;
       letter-spacing: 2px;
       border: none;
@@ -179,31 +179,31 @@
       padding: 60px 80px 80px;
       text-align: center;
     }
-
+ 
     /* CEO row — centered single card */
     .team-ceo-row {
       display: flex;
       justify-content: center;
       margin-bottom: 48px;
     }
-
-    /* Team members row */
+ 
+    /* Team members row — equal height, aligned tops */
     .team-members-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 32px;
+      align-items: start;
     }
-
+ 
     .team-card {
       background: #fff;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      padding: 36px 24px 28px;
+      padding: 36px 28px 36px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 12px;
-      max-width: 384px;
+      gap: 16px;
       width: 100%;
     }
     .team-card .avatar {
@@ -212,6 +212,7 @@
       border-radius: 50%;
       overflow: hidden;
       flex-shrink: 0;
+      background: #d9d9d9;
     }
     .team-card .avatar img {
       width: 100%;
@@ -223,28 +224,42 @@
       font-weight: 700;
       color: #000;
       text-align: center;
+      margin-top: 4px;
     }
     .team-card .role-badge {
       background: var(--blue);
       color: #fff;
       font-size: 16px;
-      font-weight: 400;
+      font-weight: 600;
       border-radius: 12px;
-      padding: 8px 20px;
+      padding: 10px 20px;
       text-align: center;
       width: 100%;
     }
     .team-card p {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 400;
       color: #000;
       text-align: center;
       line-height: 1.6;
     }
+ 
+    /* CEO row — centered, constrained width */
+    .team-ceo-row .team-card {
+      max-width: 400px;
+    }
+ 
+    /* Members row — equal height cards */
+    .team-members-row {
+      align-items: stretch;
+    }
+    .team-members-row .team-card {
+      justify-content: flex-start;
+    }
 
     /* ── READY TO GROW CTA ── */
     .cta-bar {
-      background: var(--blue-light);
+      background: var(--blue-dark);
       padding: 32px 40px;
       text-align: center;
     }
