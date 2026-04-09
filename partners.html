@@ -40,7 +40,11 @@
       justify-content: space-between;
       padding: 0 97px;
     }
-    .nav-logo img { height: 70px; width: auto; }
+    .nav-logo img { 
+      height: 90px;
+       width: auto; 
+      }
+      
     .nav-links {
       display: flex;
       gap: 30px;
@@ -68,6 +72,10 @@
       text-shadow: 0 8px 24px rgba(0,0,0,0.15);
       white-space: nowrap;
       transition: opacity .2s;
+      display: inline-flex;
+      text-decoration: none;
+      align-items: center;
+      justify-content: center;
     }
     .btn-demo:hover { opacity: .88; }
 
@@ -274,10 +282,10 @@
       <li><a href="aboutus.html">ABOUT US</a></li>
       <li><a href="partners.html">PARTNERS</a></li>
       <li><a href="jobs.html">JOBS</a></li>
-      <li><a href="#">CSR</a></li>
-      <li><a href="#">CONTACT</a></li>
+      <li><a href="csr.html">CSR</a></li>
+      <li><a href="contactus.html">CONTACT</a></li>
     </ul>
-    <button class="btn-demo">REQUEST A DEMO</button>
+    <a href="contactus.html" class="btn-demo">REQUEST A DEMO</a>
   </nav>
 
   <!-- OUR CUSTOMERS & PARTNERS -->
@@ -326,26 +334,25 @@
     <h2>Ready to Grow Your Team?</h2>
   </div>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-top">
       <div class="footer-col">
         <h4>SERVICES</h4>
         <ul>
-          <li>BUSINESS ACTIVATION</li>
-          <li>HR &amp; PAYROLL</li>
-          <li>EMPLOYER OF RECORD</li>
-          <li>RECRUITMENT</li>
+          <li><a href="services.html">BUSINESS ACTIVATION</a></li>
+          <li><a href="services.html">HR &amp; PAYROLL</a></li>
+          <li><a href="services.html">EMPLOYER OF RECORD</a></li>
+          <li><a href="services.html">RECRUITMENT</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>COMPANY</h4>
         <ul>
-          <li>ABOUT US</li>
-          <li>PARTNERS</li>
-          <li>JOBS</li>
-          <li>CSR</li>
-          <li>CONTACT</li>
+          <li><a href="aboutus.html">ABOUT US</a></li>
+          <li><a href="partners.html">PARTNERS</a></li>
+          <li><a href="jobs.html">JOBS</a></li>
+          <li><a href="csr.html">CSR</a></li>
+          <li><a href="contactus.html">CONTACT</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -356,7 +363,7 @@
         </ul>
       </div>
       <div class="footer-col footer-contact">
-        <p>Unit 106, Bldg. 13, Phase 1, Urban Deca Homes Tisa, Tisa, Cebu City, 6000</p>
+        <p>Unit 106, Bldg. 13, Phase 1, Urban Deca <br> Homes Tisa, Tisa, Cebu City, 6000</p>
         <p class="label">EMAIL</p>
         <p>hello@truestaffphmgt.com</p>
         <p class="label">PHONE</p>
@@ -370,9 +377,6 @@
           </a>
         </div>
       </div>
-    </div>
-    <div class="footer-bottom">
-      Copyright © 2025 True Staff - All Rights Reserved.
     </div>
   </footer>
 

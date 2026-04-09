@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jobs – True Staff Philippines</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue: #2e5bff;
+      --blue-dark: #004AAD;
+      --blue-light: #4189ff;
+      --bg: #f8faff;
+      --shadow: 0 4px 4px rgba(0,0,0,0.25);
+      --card-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Montserrat', sans-serif; background: var(--bg); overflow-x: hidden; }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: sticky; top: 0; z-index: 100; background: #fff;
+      box-shadow: var(--shadow); height: 93px;
+      display: flex; align-items: center; justify-content: space-between; padding: 0 97px;
+    }
+    .nav-logo img { height: 90px; width: auto; }
+    .nav-links { display: flex; gap: 30px; list-style: none; font-size: 20px; }
+    .nav-links a { text-decoration: none; color: #000; transition: color .2s; }
+    .nav-links a:hover { color: var(--blue-dark); }
+    .nav-links a.active { color: var(--blue-dark); font-weight: 600; }
+    .btn-demo {
+      background: var(--blue-dark); color: #fff; font-family: 'Montserrat', sans-serif;
+      font-weight: 500; font-size: 20px; letter-spacing: 2px; border: none;
+      border-radius: 12px; padding: 14px 28px; cursor: pointer;
+      text-shadow: 0 8px 24px rgba(0,0,0,0.15); white-space: nowrap; transition: opacity .2s;
+    }
+    .btn-demo {
+      display: inline-flex;
+      text-decoration: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-demo:hover { opacity: .88; }
+
+    /* ── HERO BANNER ── */
+    .jobs-hero {
+      position: relative;
+      height: 441px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      text-align: center;
+    }
+    .jobs-hero .hero-bg-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.72;
+    }
+    .jobs-hero .hero-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .jobs-hero h1 {
+      font-size: 64px;
+      font-weight: 400;
+      color: #000;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+    .jobs-hero h1 span {
+      font-weight: 600;
+      color: var(--blue);
+    }
+    .jobs-hero p {
+      font-size: 40px;
+      font-weight: 400;
+      color: #000;
+      max-width: 1036px;
+      line-height: 1.4;
+      text-align: center;
+    }
+    .hero-tags {
+      display: flex;
+      gap: 24px;
+      margin-top: 8px;
+    }
+    .hero-tag {
+      background: var(--blue);
+      color: #fff;
+      font-size: 22px;
+      font-weight: 500;
+      border-radius: 12px;
+      padding: 14px 28px;
+      width: 318px;
+      height: 61px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: 2.8px;
+      text-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    /* ── MAIN CONTENT ── */
+    .jobs-main {
+      display: grid;
+      grid-template-columns: 850px 1fr;
+      gap: 40px;
+      padding: 48px 80px 80px;
+      align-items: start;
+    }
+
+    /* ── JOB DETAILS SIDEBAR / ACCORDION ── */
+    .job-sidebar {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 28px 24px;
+    }
+    .job-sidebar h3 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #555;
+      letter-spacing: 1.5px;
+      margin-bottom: 20px;
+    }
+
+    .accordion-item {
+      border-bottom: 1px solid #eee;
+    }
+    .accordion-item:last-child { border-bottom: none; }
+
+    .accordion-btn {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--blue);
+      text-align: left;
+    }
+    .accordion-btn:hover { color: var(--blue-dark); }
+
+    .chevron {
+      font-size: 14px;
+      color: #999;
+      transition: transform .3s;
+      display: inline-block;
+    }
+
+    .accordion-body {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height .35s ease, padding .3s ease;
+      padding: 0 0 0;
+    }
+    .accordion-body p,
+    .accordion-body ul {
+      font-size: 14px;
+      color: #444;
+      line-height: 1.7;
+      padding-bottom: 14px;
+    }
+    .accordion-body ul {
+      padding-left: 18px;
+    }
+    .accordion-body ul li {
+      margin-bottom: 6px;
+    }
+
+    /* Open state */
+    .accordion-item.open .accordion-body {
+      max-height: 600px;
+      padding-bottom: 4px;
+    }
+    .accordion-item.open .chevron {
+      transform: rotate(180deg);
+    }
+
+    /* ── APPLICATION FORM ── */
+    .job-form-area {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 36px 40px;
+    }
+    .job-form-area h2 {
+      font-size: 24px;
+      font-weight: 600;
+      color: #000;
+      margin-bottom: 24px;
+    }
+
+    /* Role icons row */
+    .role-icons {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .role-icon-card {
+      background: var(--blue-light);
+      border-radius: 12px;
+      padding: 14px 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      width: 33.33%;
+      height: 100px;
+      text-align: center;
+    }
+    .role-icon-card.pink { background: #e91e8c; }
+    .role-icon-card.darkblue { background: var(--blue-dark) }
+    .role-icon-card span {
+      font-size: 11px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.3;
+    }
+    .role-icon-card .icon { font-size: 28px; }
+
+    /* Form fields */
+    .form-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .form-grid input,
+    .form-grid textarea {
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px;
+      color: #333;
+      outline: none;
+      transition: border-color .2s;
+      background: #fff;
+    }
+    .form-grid input:focus,
+    .form-grid textarea:focus { border-color: var(--blue); }
+    .form-grid textarea { height: 100px; resize: vertical; }
+
+    /* Upload Resume */
+    .upload-label {
+      font-size: 15px;
+      font-weight: 600;
+      color: #000;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .upload-box {
+      border: 2px dashed #bbb;
+      border-radius: 10px;
+      padding: 28px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color .2s;
+      position: relative;
+    }
+    .upload-box:hover { border-color: var(--blue); }
+    .upload-box input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .upload-box .upload-icon { font-size: 32px; color: #999; margin-bottom: 8px; }
+    .upload-box p { font-size: 14px; color: #555; line-height: 1.5; }
+    .upload-box small { font-size: 11px; color: #999; }
+
+    /* Submit */
+    .btn-submit {
+      width: 100%;
+      background: var(--blue);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: 1.5px;
+      border: none;
+      border-radius: 10px;
+      padding: 16px;
+      cursor: pointer;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: opacity .2s;
+      margin-top: 4px;
+    }
+    .btn-submit:hover { opacity: .88; }
+
+    .form-note {
+      font-size: 12px;
+      color: #555;
+      text-align: center;
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+    .form-note a { color: var(--blue); }
+
+    .recaptcha-note {
+      font-size: 10px;
+      color: #888;
+      text-align: center;
+      margin-top: 8px;
+    }
+    .recaptcha-note a { color: var(--blue); }
+
+    /* ── CTA BAR ── */
+    .cta-bar { background: var(--blue-dark); padding: 32px 40px; text-align: center; }
+    .cta-bar h2 { font-size: 40px; font-weight: 700; color: #fff; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #000;
+      color: #fff;
+      padding: 48px 80px 32px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1.2fr 1.8fr;
+      gap: 48px;
+      margin-bottom: 40px;
+    }
+    .footer-col h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+    }
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-col ul li,
+    .footer-col ul li a {
+      font-size: 16px;
+      font-weight: 400;
+      color: #fff;
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+    .footer-col ul li a:hover { opacity: .75; }
+    .footer-contact p {
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+    .footer-contact a { color: #fff; text-decoration: none; }
+    .footer-contact .label {
+      font-weight: 700;
+      font-size: 16px;
+      margin-top: 12px;
+    }
+    .social-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .social-links a img { width: 46px; height: 46px; object-fit: cover; border-radius: 6px; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.2);
+      padding-top: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .partners-cards,
+    .feedback-cards {
+      animation: fadeUp .6s ease both;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-logo">
+      <img src="images/logo.png" alt="True Staff Logo" />
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="services.html">SERVICES</a></li>
+      <li><a href="aboutus.html">ABOUT US</a></li>
+      <li><a href="partners.html">PARTNERS</a></li>
+      <li><a href="jobs.html">JOBS</a></li>
+      <li><a href="csr.html">CSR</a></li>
+      <li><a href="contactus.html">CONTACT</a></li>
+    </ul>
+    <a href="contactus.html" class="btn-demo">REQUEST A DEMO</a>
+  </nav>
+
+  <!-- HERO BANNER -->
+  <section class="jobs-hero">
+    <img class="hero-bg-img" src="images/handshake2.png" alt="Handshake background" />
+    <div class="hero-content">
+      <h1>Apply as an <span>IT Support Coordinator</span></h1>
+      <p>Join our team and support global clients in a fast-paced, collaboration environment</p>
+      <div class="hero-tags">
+        <div class="hero-tag">REMOTE WORK</div>
+        <div class="hero-tag">FULL-TIME</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN: SIDEBAR + FORM -->
+  <div class="jobs-main">
+
+    <!-- JOB DETAILS SIDEBAR -->
+    <aside class="job-sidebar">
+      <h3>JOB DETAILS</h3>
+
+      <div class="accordion-item open">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">
+          <span>Overview</span>
+          <span class="chevron">&#8743;</span>
+        </button>
+        <div class="accordion-body">
+          <p>The IT Support Coordinator plays a key role in maintaining the reliability and efficiency of the organization's IT infrastructure. This position is responsible for providing technical assistance to users, diagnosing hardware and software issues, and ensuring smooth operation of computer systems and networks. The IT Support Coordinator collaborates with internal teams to resolve technical concerns, maintains documentation of support activities, and assists in implementing system improvements. The role requires strong problem-solving abilities, effective communication skills, and the capacity to manage multiple support requests in a fast-paced environment.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">
+          <span>Responsibilities</span>
+          <span class="chevron">&#8743;</span>
+        </button>
+        <div class="accordion-body">
+          <ul>
+            <li>Coordinate IT support activities across multiple locations with contractors, vendors, and internal teams.</li>
+            <li>Analyze and resolve complex performance issues and system outages, escalating concerns to vendors when necessary.</li>
+            <li>Provide second-level and third-level technical support for system-related issues.</li>
+            <li>Manage relationships with third-party service providers and coordinate on-site technical visits.</li>
+            <li>Work with Mobile Device Management (MDM) systems and external vendors to maintain seamless IT service delivery.</li>
+            <li>Install and configure computer hardware, operating systems, and networking software.</li>
+            <li>Provide technical assistance for servers, desktops, laptops, printers, scanners, phones, and wireless devices.</li>
+            <li>Monitor system performance daily and proactively address potential incidents within the production environment.</li>
+            <li>Maintain inventory control and lifecycle asset management for end-user computing devices</li>
+            <li>Review system configurations and gain a functional understanding of internal applications and development processes.</li>
+            <li>Create and maintain documentation for IT procedures, troubleshooting guides, and incident resolutions.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">
+          <span>Requirements</span>
+          <span class="chevron">&#8743;</span>
+        </button>
+        <div class="accordion-body">
+          <ul>
+            <li>Experience supporting a corporate or multi-site technology environment.</li>
+            <li>Experience working with IT ticketing systems.</li>
+            <li>Strong organizational and administrative skills with the ability to handle confidential information professionally.</li>
+            <li>High attention to detail and ability to work effectively under tight deadlines.</li>
+            <li>Strong written and verbal communication skills.</li>
+            <li>Excellent customer service skills and strong follow-through on technical issues.</li>
+            <li>Results-oriented with the ability to manage multiple priorities efficiently.</li>
+            <li>Willingness to learn new technologies and take on technical challenges.</li>
+            <li>Professional, courteous, and collaborative work attitude.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">
+          <span>Qualifications</span>
+          <span class="chevron">&#8743;</span>
+        </button>
+        <div class="accordion-body">
+          <ul>
+            <li>Post-secondary diploma, degree, or certificate in Information Technology or a related field.</li>
+            <li>Experience working with Mobile Device Management (MDM) technologies.</li>
+            <li>Knowledge of Microsoft technologies including Exchange, Office 365, Azure, and Microsoft Teams.</li>
+            <li>Strong troubleshooting skills for both mobile and desktop technologies.</li>
+            <li>Working knowledge of computer hardware, software, and network equipment.</li>
+            <li>At least 4+ years of experience providing IT support services.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">
+          <span>Nice To Have</span>
+          <span class="chevron">&#8743;</span>
+        </button>
+        <div class="accordion-body">
+          <ul>
+            <li>Experience using Jira Service Management.</li>
+            <li>Professional certifications or familiarity with IT service management frameworks.</li>
+            <li>ITIL Foundation certification or familiarity with IT service management frameworks.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">
+          <span>Working Conditions</span>
+          <span class="chevron">&#8743;</span>
+        </button>
+        <div class="accordion-body">
+          <ul>
+            <li>Regular business hours with occasional evening or weekend work required for maintenance or project implementation.</li>
+            <li>May involve remote work or support across multiple locations.</li>
+          </ul>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- APPLICATION FORM -->
+    <div class="job-form-area">
+      <h2>Be a Part of the Team!</h2>
+
+      <!-- Role icon cards -->
+      <div class="role-icons">
+        <div class="role-icon-card">
+          <div class="icon">🖥️</div>
+          <span>Remote Role</span>
+        </div>
+        <div class="role-icon-card pink">
+          <div class="icon">🤝</div>
+          <span>Competitive Compensation</span>
+        </div>
+        <div class="role-icon-card purple">
+          <div class="icon">🌍</div>
+          <span>Support Global Clients</span>
+        </div>
+      </div>
+
+      <!-- Form fields -->
+      <div class="form-grid">
+        <input type="text" placeholder="Name" />
+        <input type="email" placeholder="Email" />
+        <input type="tel" placeholder="Phone" />
+        <input type="url" placeholder="LinkedIn URL (optional)" />
+
+        <div>
+          <label class="upload-label">Upload Resume</label>
+          <div class="upload-box">
+            <input type="file" id="resume-upload" accept=".pdf,.doc,.docx" />
+            <div class="upload-icon">☁️</div>
+            <p id="upload-text">Drag &amp; Drop Your Resume<br />or Click to Upload</p>
+            <small>Accepted file types: PDF, DOC, DOCX (Max 5MB)</small>
+          </div>
+        </div>
+
+        <textarea placeholder="Message"></textarea>
+        <input type="text" placeholder="Position applied" />
+
+        <button class="btn-submit">SUBMIT APPLICATION</button>
+      </div>
+
+      <p class="form-note">
+        Our HR Team will review your application<br />within 3–5 business days.
+      </p>
+      <p class="recaptcha-note">
+        This site is protected by reCAPTCHA and the Google
+        <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+        <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- READY TO GROW CTA -->
+  <div class="cta-bar">
+    <h2>Ready to Grow Your Team?</h2>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>SERVICES</h4>
+        <ul>
+          <li><a href="services.html">BUSINESS ACTIVATION</a></li>
+          <li><a href="services.html">HR &amp; PAYROLL</a></li>
+          <li><a href="services.html">EMPLOYER OF RECORD</a></li>
+          <li><a href="services.html">RECRUITMENT</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>COMPANY</h4>
+        <ul>
+          <li><a href="aboutus.html">ABOUT US</a></li>
+          <li><a href="partners.html">PARTNERS</a></li>
+          <li><a href="jobs.html">JOBS</a></li>
+          <li><a href="csr.html">CSR</a></li>
+          <li><a href="contactus.html">CONTACT</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>LEGAL</h4>
+        <ul>
+          <li><a href="https://policies.google.com/privacy" target="_blank">GOOGLE PRIVACY POLICY</a></li>
+          <li><a href="https://policies.google.com/terms" target="_blank">TERMS OF SERVICES</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-contact">
+        <p>Unit 106, Bldg. 13, Phase 1, Urban Deca <br> Homes Tisa, Tisa, Cebu City, 6000</p>
+        <p class="label">EMAIL</p>
+        <p>hello@truestaffphmgt.com</p>
+        <p class="label">PHONE</p>
+        <p>0917 106 2150</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/profile.php?id=100091492266684" target="_blank">
+            <img src="images/fb.png" alt="Facebook" />
+          </a>
+          <a href="https://www.linkedin.com/company/true-staff-philippines-management-inc/" target="_blank">
+            <img src="images/linkedin.png" alt="LinkedIn" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAccordion(btn) {
+      const item = btn.closest('.accordion-item');
+      item.classList.toggle('open');
+    }
+
+    // Handle resume upload display
+    document.getElementById('resume-upload').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      const uploadText = document.getElementById('upload-text');
+      const uploadIcon = document.querySelector('.upload-icon');
+      if (file) {
+        uploadText.textContent = `Selected: ${file.name}`;
+        uploadIcon.textContent = '📄'; // Change icon to document
+      } else {
+        uploadText.innerHTML = 'Drag &amp; Drop Your Resume<br />or Click to Upload';
+        uploadIcon.textContent = '☁️';
+      }
+    });
+  </script>
+
+</body>
+</html>

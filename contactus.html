@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us – True Staff Philippines</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue: #2e5bff;
+      --blue-dark: #004AAD;
+      --blue-light: #4189ff;
+      --bg: #f8faff;
+      --shadow: 0 4px 4px rgba(0,0,0,0.25);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Montserrat', sans-serif; background: var(--bg); overflow-x: hidden; }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: sticky; top: 0; z-index: 100; background: #fff;
+      box-shadow: var(--shadow); height: 93px;
+      display: flex; align-items: center; justify-content: space-between; padding: 0 97px;
+    }
+    .nav-logo img { height: 90px; width: auto; }
+    .nav-links { display: flex; gap: 30px; list-style: none; font-size: 20px; }
+    .nav-links a { text-decoration: none; color: #000; transition: color .2s; }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-links a.active { color: var(--blue); font-weight: 600; }
+    .btn-demo {
+      background: var(--blue-dark); color: #fff; font-family: 'Montserrat', sans-serif;
+      font-weight: 500; font-size: 20px; letter-spacing: 2px; border: none;
+      border-radius: 12px; padding: 14px 28px; cursor: pointer;
+      text-shadow: 0 8px 24px rgba(0,0,0,0.15); white-space: nowrap; transition: opacity .2s;
+    }
+    .btn-demo {
+      display: inline-flex;
+      text-decoration: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-demo:hover { opacity: .88; }
+
+    /* ── PAGE TITLE ── */
+    .page-title {
+      text-align: center;
+      padding: 48px 120px 32px;
+    }
+    .page-title h1 {
+      font-size: 48px;
+      font-weight: 600;
+      color: var(--blue-dark);
+    }
+
+    /* ── MAIN CONTACT SECTION ── */
+    .contact-main {
+      padding: 0 80px 48px;
+      display: grid;
+      grid-template-columns: 583px 1fr;
+      gap: 0;
+      align-items: stretch;
+    }
+
+    /* LEFT: Drop Us a Line form */
+    .contact-form-card {
+      background: #fff;
+      border-radius: 24px 0 0 24px;
+      box-shadow: var(--shadow);
+      padding: 36px 40px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .contact-form-card h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 4px;
+    }
+    .contact-form-card input,
+    .contact-form-card textarea {
+      width: 100%;
+      border: 1px solid #000;
+      border-radius: 12px;
+      padding: 14px 20px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: rgba(0,0,0,.5);
+      outline: none;
+      transition: border-color .2s;
+      background: #fff;
+    }
+    .contact-form-card input:focus,
+    .contact-form-card textarea:focus { border-color: var(--blue); color: #000; }
+    .contact-form-card textarea { height: 155px; resize: vertical; }
+    .btn-send {
+      background: var(--blue);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      font-size: 18px;
+      letter-spacing: 2px;
+      border: none;
+      border-radius: 12px;
+      padding: 16px;
+      width: 100%;
+      height: 61px;
+      cursor: pointer;
+      text-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      transition: opacity .2s;
+    }
+    .btn-send:hover { opacity: .9; }
+    .recaptcha-note {
+      font-size: 9px;
+      color: #000;
+      text-align: center;
+      line-height: 1.5;
+    }
+    .recaptcha-note a { color: var(--blue); }
+
+    /* RIGHT: Visit us in Person */
+    .contact-info-card {
+      border-radius: 0 24px 24px 0;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .contact-info-header {
+      background: linear-gradient(to right, #1c3799, #2e5bff 37.5%);
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .contact-info-header img { width: 45px; height: 45px; object-fit: contain; }
+    .contact-info-header h2 {
+      font-size: 26px;
+      font-weight: 600;
+      color: #fff;
+    }
+    .contact-info-body {
+      background: #fff;
+      padding: 24px 32px 32px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .contact-info-body .tagline {
+      font-size: 20px;
+      color: #000;
+      margin-bottom: 24px;
+    }
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-row img { width: 45px; height: 45px; object-fit: contain; flex-shrink: 0; }
+    .info-row-text h4 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #000;
+      margin-bottom: 4px;
+    }
+    .info-row-text p, .info-row-text a {
+      font-size: 20px;
+      font-weight: 600;
+      color: #004aad;
+      text-decoration: none;
+      line-height: 1.5;
+    }
+    .info-row-text .normal {
+      color: #000;
+      font-weight: 400;
+    }
+
+    /* ── MAP + VISIT OFFICE SECTION ── */
+    .location-section {
+      padding: 0 80px 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .map-col h3, .visit-col h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 16px;
+    }
+    .map-frame {
+      border-radius: 24px;
+      overflow: hidden;
+      width: 100%;
+      height: 211px;
+      display: block;
+      text-decoration: none;
+    }
+    .map-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Visit Our Office card */
+    .visit-card {
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 20px 28px;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+    .visit-card img.office-img {
+      width: 220px;
+      height: 154px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+    .visit-features {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .visit-feature {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: #000;
+    }
+    .visit-feature img { width: 30px; height: 30px; object-fit: contain; }
+    .visit-feature span.highlight { color: var(--blue); font-weight: 600; }
+    .visit-feature span.highlight2 { color: var(--blue-dark); font-weight: 600; }
+
+    /* ── CTA BAR ── */
+    .cta-bar { background: var(--blue-dark); padding: 32px 40px; text-align: center; }
+    .cta-bar h2 { font-size: 40px; font-weight: 700; color: #fff; }
+
+    /* ── FOOTER ── */
+    footer { background: #000; color: #fff; padding: 48px 80px 32px; }
+    .footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1.2fr 1.8fr; gap: 48px; margin-bottom: 40px; }
+    .footer-col h4 { font-size: 16px; font-weight: 700; margin-bottom: 16px; letter-spacing: 1px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li,
+    .footer-col ul li a { font-size: 16px; font-weight: 400; color: #fff; text-decoration: none; transition: opacity .2s; }
+    .footer-col ul li a:hover { opacity: .75; }
+    .footer-contact p { font-size: 16px; line-height: 1.7; margin-bottom: 8px; }
+    .footer-contact a { color: #fff; text-decoration: none; }
+    .footer-contact .label { font-weight: 700; font-size: 16px; margin-top: 12px; }
+    .social-links { display: flex; gap: 12px; margin-top: 16px; }
+    .social-links a img { width: 46px; height: 46px; object-fit: cover; border-radius: 6px; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.2); padding-top: 20px; font-size: 15px; font-weight: 700; color: #fff; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .contact-main, .location-section { animation: fadeUp .6s ease both; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-logo">
+      <img src="images/logo.png" alt="True Staff Logo" />
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="services.html">SERVICES</a></li>
+      <li><a href="aboutus.html">ABOUT US</a></li>
+      <li><a href="partners.html">PARTNERS</a></li>
+      <li><a href="jobs.html">JOBS</a></li>
+      <li><a href="csr.html">CSR</a></li>
+      <li><a href="contactus.html">CONTACT</a></li>
+    </ul>
+    <a href="contactus.html" class="btn-demo">REQUEST A DEMO</a>
+  </nav>
+
+  <!-- PAGE TITLE -->
+  <div class="page-title">
+    <h1>Contact Us</h1>
+  </div>
+
+  <!-- MAIN: FORM + CONTACT INFO -->
+  <div class="contact-main">
+
+    <!-- LEFT: Drop Us a Line -->
+    <div class="contact-form-card">
+      <h2>Drop Us a Line!</h2>
+      <input type="text" placeholder="Name" />
+      <input type="email" placeholder="Email" />
+      <input type="tel" placeholder="Phone" />
+      <textarea placeholder="Message"></textarea>
+      <button class="btn-send">SEND MESSAGE</button>
+      <p class="recaptcha-note">
+        This site is protected by reCAPTCHA and the Google
+        <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a> and
+        <a href="https://policies.google.com/terms" target="_blank">Terms of Service</a> apply.
+      </p>
+    </div>
+
+    <!-- RIGHT: Visit Us in Person -->
+    <div class="contact-info-card">
+      <div class="contact-info-header">
+        <img src="images/gmaps.png" alt="Location" />
+        <h2>Visit us in Person!</h2>
+      </div>
+      <div class="contact-info-body">
+        <p class="tagline">We'd love to meet you during business hours</p>
+
+        <div class="info-row">
+          <img src="images/addressicon.png" alt="Address" />
+          <div class="info-row-text">
+            <h4>Address</h4>
+            <p class="normal">Unit 106, Bldg. 13, Phase 1, Urban Deca Homes Tisa, Tisa, Cebu City</p>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <img src="images/phoneicon.png" alt="Phone" />
+          <div class="info-row-text">
+            <h4>Phone</h4>
+            <a href="tel:09171062150">0917 106 2150</a>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <img src="images/emailicon.png" alt="Email" />
+          <div class="info-row-text">
+            <h4>Email</h4>
+            <a href="mailto:hello@truestaffphmgt.com">hello@truestaffphmgt.com</a>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <img src="images/hoursicon.png" alt="Hours" />
+          <div class="info-row-text">
+            <h4>Business Hours</h4>
+            <p class="normal">Monday - Friday | 9:00 am - 5:00 pm<br />Saturday - Sunday | Closed</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MAP + VISIT OFFICE -->
+  <div class="location-section">
+
+    <!-- Map -->
+    <div class="map-col">
+      <h3>Find us on the Map!</h3>
+      <a class="map-frame" href="https://maps.app.goo.gl/koRLAmsJdJ9Ueijc6" target="_blank">
+        <img src="images/deca.png" alt="Map to True Staff" />
+      </a>
+    </div>
+
+    <!-- Visit Our Office -->
+    <div class="visit-col">
+      <h3>Visit Our Office</h3>
+      <div class="visit-card">
+        <img class="office-img" src="images/office.png" alt="Office" />
+        <div class="visit-features">
+          <div class="visit-feature">
+            <img src="images/checkicon.png" alt="check" />
+            <span>Convenient Location in <span class="highlight">Cebu City</span></span>
+          </div>
+          <div class="visit-feature">
+            <img src="images/checkicon.png" alt="check" />
+            <span>Ample Parking Space</span>
+          </div>
+          <div class="visit-feature">
+            <img src="images/checkicon.png" alt="check" />
+            <span>Walk-in Consultations are <span class="highlight2">Welcomed</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- READY TO GROW CTA -->
+  <div class="cta-bar">
+    <h2>Ready to Grow Your Team?</h2>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>SERVICES</h4>
+        <ul>
+          <li><a href="services.html">BUSINESS ACTIVATION</a></li>
+          <li><a href="services.html">HR &amp; PAYROLL</a></li>
+          <li><a href="services.html">EMPLOYER OF RECORD</a></li>
+          <li><a href="services.html">RECRUITMENT</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>COMPANY</h4>
+        <ul>
+          <li><a href="aboutus.html">ABOUT US</a></li>
+          <li><a href="partners.html">PARTNERS</a></li>
+          <li><a href="jobs.html">JOBS</a></li>
+          <li><a href="csr.html">CSR</a></li>
+          <li><a href="contactus.html">CONTACT</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>LEGAL</h4>
+        <ul>
+          <li><a href="https://policies.google.com/privacy" target="_blank">GOOGLE PRIVACY POLICY</a></li>
+          <li><a href="https://policies.google.com/terms" target="_blank">TERMS OF SERVICES</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-contact">
+        <p>Unit 106, Bldg. 13, Phase 1, Urban Deca Homes Tisa, Tisa, Cebu City, 6000</p>
+        <p class="label">EMAIL</p>
+        <p>hello@truestaffphmgt.com</p>
+        <p class="label">PHONE</p>
+        <p>0917 106 2150</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/profile.php?id=100091492266684" target="_blank">
+            <img src="images/fb.png" alt="Facebook" />
+          </a>
+          <a href="https://www.linkedin.com/company/true-staff-philippines-management-inc/" target="_blank">
+            <img src="images/linkedin.png" alt="LinkedIn" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
