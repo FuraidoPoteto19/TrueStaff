@@ -11,7 +11,7 @@ $message = trim(htmlspecialchars($_POST['message'] ?? ''));
 $help = trim(htmlspecialchars($_POST['help'] ?? ''));
 $comments = trim(htmlspecialchars($_POST['comments'] ?? ''));
 
-$to = "janssengeyrozaga213@gmail.com";
+$to = "hello@truestaffphmgt.com";
 $fromAddress = "janssengeyrozaga213@gmail.com";
 $replyTo = $email;
 $subject = "New Contact Message from $name";
