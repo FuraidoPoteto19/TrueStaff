@@ -22,7 +22,7 @@ $resumeName = basename($resume['name']);
 $resumeType = mime_content_type($resume['tmp_name']) ?: 'application/octet-stream';
 $resumeData = chunk_split(base64_encode(file_get_contents($resume['tmp_name'])));
 
-$to = "janssengeyrozaga213@gmail.com";
+$to = "hello@truestaffphmgt.com";
 $fromAddress = "janssengeyrozaga213@gmail.com";
 $replyTo = $email;
 $subject = "New Job Application from $name for $position";
