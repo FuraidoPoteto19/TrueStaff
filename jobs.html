@@ -312,6 +312,16 @@
       margin-top: 10px;
       line-height: 1.5;
     }
+    .form-status {
+      font-size: 14px;
+      color: #444;
+      text-align: center;
+      margin-top: 12px;
+      min-height: 22px;
+      transition: color .2s ease;
+    }
+    .form-status.success { color: #1a7f30; }
+    .form-status.error { color: #c53030; }
     .form-note a { color: var(--blue); }
 
     .recaptcha-note {
@@ -553,27 +563,30 @@
       </div>
 
       <!-- Form fields -->
-      <div class="form-grid">
-        <input type="text" placeholder="Name" />
-        <input type="email" placeholder="Email" />
-        <input type="tel" placeholder="Phone" />
-        <input type="url" placeholder="LinkedIn URL (optional)" />
+      <form method="post" action="send_application.php" enctype="multipart/form-data">
+        <div class="form-grid">
+          <input type="text" name="name" placeholder="Name" required />
+          <input type="email" name="email" placeholder="Email" required />
+          <input type="tel" name="phone" placeholder="Phone" />
+          <input type="url" name="linkedin" placeholder="LinkedIn URL (optional)" />
 
-        <div>
-          <label class="upload-label">Upload Resume</label>
-          <div class="upload-box">
-            <input type="file" id="resume-upload" accept=".pdf,.doc,.docx" />
-            <div class="upload-icon">☁️</div>
-            <p id="upload-text">Drag &amp; Drop Your Resume<br />or Click to Upload</p>
-            <small>Accepted file types: PDF, DOC, DOCX (Max 5MB)</small>
+          <div>
+            <label class="upload-label">Upload Resume</label>
+            <div class="upload-box">
+              <input type="file" name="resume" id="resume-upload" accept=".pdf,.doc,.docx" />
+              <div class="upload-icon">☁️</div>
+              <p id="upload-text">Drag &amp; Drop Your Resume<br />or Click to Upload</p>
+              <small>Accepted file types: PDF, DOC, DOCX (Max 5MB)</small>
+            </div>
           </div>
+
+          <textarea name="message" placeholder="Message"></textarea>
+          <input type="text" name="position" placeholder="Position applied" required />
+
+          <button type="submit" class="btn-submit">SUBMIT APPLICATION</button>
+          <div id="application-status" class="form-status"></div>
         </div>
-
-        <textarea placeholder="Message"></textarea>
-        <input type="text" placeholder="Position applied" />
-
-        <button class="btn-submit">SUBMIT APPLICATION</button>
-      </div>
+      </form>
 
       <p class="form-note">
         Our HR Team will review your application<br />within 3–5 business days.
@@ -640,6 +653,52 @@
   </footer>
 
   <script>
+    const applicationForm = document.querySelector('form[action="send_application.php"]');
+    const applicationStatus = document.getElementById('application-status');
+
+    if (applicationForm) {
+      applicationForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (applicationStatus) {
+          applicationStatus.textContent = 'Sending your application...';
+          applicationStatus.classList.remove('success', 'error');
+        }
+
+        const formData = new FormData(this);
+        fetch('send_application.php', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (applicationStatus) {
+            applicationStatus.textContent = data.message || 'Application submitted.';
+            applicationStatus.classList.toggle('success', !!data.success);
+            applicationStatus.classList.toggle('error', !data.success);
+          }
+
+          if (data.success) {
+            this.reset();
+            const uploadText = document.getElementById('upload-text');
+            const uploadIcon = document.querySelector('.upload-icon');
+            if (uploadText) {
+              uploadText.innerHTML = 'Drag &amp; Drop Your Resume<br />or Click to Upload';
+            }
+            if (uploadIcon) {
+              uploadIcon.textContent = '☁️';
+            }
+          }
+        })
+        .catch(error => {
+          if (applicationStatus) {
+            applicationStatus.textContent = 'An error occurred. Please try again.';
+            applicationStatus.classList.add('error');
+          }
+          console.error('Error:', error);
+        });
+      });
+    }
+
     function toggleAccordion(btn) {
       const item = btn.closest('.accordion-item');
       item.classList.toggle('open');

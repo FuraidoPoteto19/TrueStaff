@@ -155,6 +155,7 @@
       cursor: pointer;
       text-shadow: 0 8px 24px rgba(0,0,0,0.15);
       transition: opacity .2s, transform .15s;
+      text-decoration: none;
     }
     .btn-primary:hover { opacity: .9; transform: translateY(-1px); }
 
@@ -245,6 +246,17 @@
       transition: opacity .2s;
     }
     .btn-send:hover { opacity: .9; }
+
+    .form-status {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 15px;
+      color: #444;
+      min-height: 22px;
+      transition: color .2s ease;
+    }
+    .form-status.success { color: #1a7f30; }
+    .form-status.error { color: #c53030; }
 
     .recaptcha-notice {
       font-size: 9px;
@@ -591,12 +603,12 @@
       <p class="hero-tagline">
         Your trusted <span>Employer of Record</span> partner for seamless expansion.
       </p>
-      <button class="btn-primary">TALK TO US NOW</button>
+      <a href="#contact-section" class="btn-primary">TALK TO US NOW</a>
     </div>
   </section>
 
   <!-- SUB-HERO -->
-  <section class="subhero">
+  <section class="subhero" id="contact-section">
     <div class="subhero-points">
       <h2>Expand in the Philippines - no entity set-up is required</h2>
       <p>Hire and manage a remote team without establishing a local entity</p>
@@ -605,14 +617,55 @@
     </div>
     <div class="contact-card">
       <h3>Get in Touch With Us</h3>
-      <div class="form-fields">
-        <input type="text" placeholder="Name" />
-        <input type="email" placeholder="Email" />
-        <input type="tel" placeholder="Phone" />
-        <input type="text" placeholder="How can we help?" />
-        <input type="text" placeholder="Other Comments?" />
-      </div>
-      <button class="btn-send">SEND MESSAGE</button>
+      <form id="index-contact-form" method="post" action="send_contact.php">
+        <div class="form-fields">
+          <input type="text" name="name" placeholder="Name" required />
+          <input type="email" name="email" placeholder="Email" required />
+          <input type="tel" name="phone" placeholder="Phone" required />
+          <input type="text" name="help" placeholder="How can we help?" required />
+          <input type="text" name="comments" placeholder="Other Comments?" required />
+        </div>
+        <button type="button" id="index-contact-submit" class="btn-send">SEND MESSAGE</button>
+        <div id="index-contact-status" class="form-status"></div>
+      </form>
+      <script>
+        const indexContactForm = document.getElementById('index-contact-form');
+        const indexContactSubmit = document.getElementById('index-contact-submit');
+        const indexContactStatus = document.getElementById('index-contact-status');
+
+        if (indexContactForm && indexContactSubmit) {
+          indexContactSubmit.addEventListener('click', function() {
+            if (indexContactStatus) {
+              indexContactStatus.textContent = 'Sending your message...';
+              indexContactStatus.classList.remove('success', 'error');
+            }
+
+            const formData = new FormData(indexContactForm);
+            fetch('send_contact.php', {
+              method: 'POST',
+              body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+              if (indexContactStatus) {
+                indexContactStatus.textContent = data.message || 'Message sent.';
+                indexContactStatus.classList.toggle('success', !!data.success);
+                indexContactStatus.classList.toggle('error', !data.success);
+              }
+
+              if (data.success) {
+                indexContactForm.reset();
+              }
+            })
+            .catch(() => {
+              if (indexContactStatus) {
+                indexContactStatus.textContent = 'An error occurred. Please try again.';
+                indexContactStatus.classList.add('error');
+              }
+            });
+          });
+        }
+      </script>
       <p class="recaptcha-notice">
         This site is protected by reCAPTCHA and the Google
         <a href="https://policies.google.com/privacy"> Privacy Policy</a> and
