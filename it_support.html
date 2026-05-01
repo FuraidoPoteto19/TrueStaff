@@ -404,11 +404,13 @@
     .partners-cards,
     .feedback-cards,
     .hero-tag,
-    .hero-tags a {
+    .hero-tags a,
+    .hero-content {
       animation: fadeUp .6s ease both;
     }
   </style>
 </head>
+<link rel="stylesheet" href="mobile.css" />
 <body>
 
   <!-- NAVBAR -->
@@ -426,6 +428,10 @@
       <li><a href="contactus.html">CONTACT</a></li>
     </ul>
     <a href="contactus.html" class="btn-demo">REQUEST A DEMO</a>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+  <span></span><span></span><span></span>
+</button>
+
   </nav>
 
   <!-- HERO BANNER -->
@@ -654,7 +660,24 @@
         </div>
       </div>
     </div>
+  <div class="footer-bottom">
+      Copyright © 2025 True Staff - All Rights Reserved.
+    </div>
   </footer>
+  <script>
+    function toggleMenu() {
+      const nav = document.querySelector('.nav-links');
+      const btn = document.getElementById('hamburger');
+      nav.classList.toggle('open');
+      btn.classList.toggle('open');
+    }
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.addEventListener('click', () => {
+        document.querySelector('.nav-links').classList.remove('open');
+        document.getElementById('hamburger').classList.remove('open');
+      });
+    });
+  </script>
 
   <script>
     const applicationForm = document.querySelector('form[action="send_application.php"]');
